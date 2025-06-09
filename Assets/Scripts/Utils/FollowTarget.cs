@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class ControllableMouvements : MonoBehaviour
+public class FollowTarget : MonoBehaviour
 {
-    
+    [SerializeField] Transform target;
+    [SerializeField] Vector3 offset = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,6 +13,6 @@ public class ControllableMouvements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.localPosition = target.localPosition + offset;
     }
 }
