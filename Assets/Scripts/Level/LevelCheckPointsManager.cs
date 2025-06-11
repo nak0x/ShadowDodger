@@ -7,6 +7,7 @@ namespace Level
         [Header("LevelCheckPointsManager")]
         [SerializeField] private GameObject[] checkPoints;
 
+        [System.NonSerialized]
         public Vector3 currentCheckPointPosition;
     
         private int _lastCheckPointIndex = 0;
@@ -19,6 +20,7 @@ namespace Level
 
         public void SetCurrentCheckPoint(GameObject checkPoint)
         {
+            Debug.Log(checkPoint.name);
             currentCheckPointPosition = checkPoint.transform.position;
             _lastCheckPointIndex = _currentCheckPointIndex;
             _currentCheckPointIndex = GetCheckPointIndex(checkPoint);

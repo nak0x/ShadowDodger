@@ -1405,7 +1405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd542b80f979bfb4ab161bd8a88adcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPoints: {fileID: 1543173952}
+  levelCheckPointsManager: {fileID: 1543173952}
   player: {fileID: 2133580624}
 --- !u!4 &1543173951
 Transform:
@@ -1707,6 +1707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3734307045544335938, guid: 1d1fe8240f9606044b956bc119592863, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1543173952}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

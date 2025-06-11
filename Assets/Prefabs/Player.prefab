@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1262793367370242254}
   - component: {fileID: 1887382637527175277}
   - component: {fileID: 8256915591983568527}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4845,7 +4845,7 @@ GameObject:
   - component: {fileID: 3292504592749384516}
   - component: {fileID: 1998915744223653915}
   - component: {fileID: 6435710047161711525}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4865,6 +4865,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4639117627261111999}
   - {fileID: 5971578664425004536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4884,7 +4885,7 @@ MonoBehaviour:
   batteryPercentage: 100
   chargeRate: 1
   drainRate: 2
-  debug: 1
+  debug: 0
 --- !u!114 &1998915744223653915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4928,7 +4929,7 @@ GameObject:
   - component: {fileID: 5724257720218767380}
   - component: {fileID: 4555931271881343967}
   - component: {fileID: 3683560570913139029}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5054,7 +5055,7 @@ GameObject:
   - component: {fileID: 1377987885274329586}
   - component: {fileID: 8602745353580211661}
   - component: {fileID: 8434887184141988411}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5074,7 +5075,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4639117627261111999}
   - {fileID: 5724257720218767380}
   - {fileID: 1262793367370242254}
   m_Father: {fileID: 6208920514718774933}
@@ -5192,11 +5192,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ca866d4608a034f817d3717257b4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 2
   PlayerRB: {fileID: 7963619643930924323}
   PlayerCol: {fileID: 3741841048419114245}
   moveSpeed: 5
-  battery: {fileID: 0}
+  bodyContainer: {fileID: 5971578664425004536}
+  battery: {fileID: 3292504592749384516}
 --- !u!114 &8602745353580211661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5212,6 +5212,8 @@ MonoBehaviour:
   particles: {fileID: 1887382637527175277}
   particlesTransform: {fileID: 1262793367370242254}
   PlayerRB: {fileID: 7963619643930924323}
+  progressionDuration: 2
+  rateFactor: 20
 --- !u!114 &8434887184141988411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5241,7 +5243,8 @@ GameObject:
   - component: {fileID: 3094602544716430924}
   - component: {fileID: 2151100206146078735}
   - component: {fileID: 3798368120682868394}
-  m_Layer: 0
+  - component: {fileID: 6597004056213230221}
+  m_Layer: 8
   m_Name: PlayerPOV
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -5261,7 +5264,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5971578664425004536}
+  m_Father: {fileID: 6208920514718774933}
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
 --- !u!20 &3094602544716430924
 Camera:
@@ -5366,3 +5369,17 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0.047
+--- !u!114 &6597004056213230221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6447716546091376322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7c4b2baafc727439ab8294aa7e233b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 5971578664425004536}
+  offset: {x: -10, y: 9.48, z: -10}

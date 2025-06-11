@@ -30,7 +30,5 @@ public class MouvementsParticules : MonoBehaviour
         
         var emission = particles.emission;
         emission.rateOverDistance = rateFactor * Mathf.Lerp(0f, magnitude, (Time.time - _mouvementStartTime)/progressionDuration);
-        
-        particlesTransform.rotation = Quaternion.LookRotation(-PlayerRB.linearVelocity);
     }
 }
