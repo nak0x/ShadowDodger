@@ -32,6 +32,9 @@ internal class PlayerMouvement : MonoBehaviour
         
         // Rotate player immediately when input changes
         bodyContainer.rotation = Quaternion.Euler(new Vector3(0, _facingAngle, 0));
+        
+        if (IsMoving())
+            battery.Drain(Time.deltaTime);
     }
 
     private void FixedUpdate()
@@ -79,5 +82,12 @@ internal class PlayerMouvement : MonoBehaviour
         else if (forward > 0)
             return 0f;
         return _facingAngle; // Current rotation when no input
+    }
+
+    public bool IsMoving()
+    {
+        if (_moveForward != 0 || _moveHorizontal != 0)
+            return true;
+        return false;
     }
 }

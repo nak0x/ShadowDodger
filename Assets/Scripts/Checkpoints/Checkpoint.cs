@@ -10,13 +10,27 @@ namespace Checkpoints
         [Header("Detection settings")]
         [SerializeField] private LayerMask playerLayer;
 
-        public void OnTriggerEnter(Collider collider)
+        [Header("Checkpoint visuals")]
+        [SerializeField] private Renderer checkpointRenderer;
+
+        [SerializeField] private string colorField = "_EmissionColor";
+        [SerializeField] private Color triggeredColor = Color.white;
+
+        private bool _triggered = false;
+
+        public void OnTriggerEnter(Collider other)
         {
-            Debug.Log(collider.gameObject.name);
-            if (collider.gameObject.layer == playerLayer.value)
+            if (!_triggered && ((1 << other.gameObject.layer) & playerLayer.value) != 0)
             {
+                TriggerCheckpoint();
                 manager.SetCurrentCheckPoint(gameObject);
             }
+        }
+
+        private void TriggerCheckpoint()
+        {
+            checkpointRenderer.material.SetColor(colorField, triggeredColor);
+            _triggered = true;
         }
     }
 }

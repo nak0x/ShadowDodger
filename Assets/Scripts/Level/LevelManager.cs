@@ -26,6 +26,7 @@ namespace Level
 
         public void GoToLastCheckpoints()
         {
+            Debug.Log("Go to last checkpoints");
             levelCheckPointsManager.SetCurrentCheckPoint(levelCheckPointsManager.GetLastCheckPoint());
             player.transform.position = levelCheckPointsManager.currentCheckPointPosition;
         }

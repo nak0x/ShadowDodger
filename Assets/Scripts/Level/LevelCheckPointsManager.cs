@@ -28,6 +28,7 @@ namespace Level
 
         public GameObject GetLastCheckPoint()
         {
+            Debug.Log("Last checkpoint : " + checkPoints[_lastCheckPointIndex]);
             return checkPoints[_lastCheckPointIndex];
         }
 
