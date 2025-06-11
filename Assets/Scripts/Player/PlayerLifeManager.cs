@@ -42,8 +42,7 @@ namespace Player
         {
             Debug.Log("Player is dead : " + cause);
             remainingLife--;
-            if (remainingLife <= 0)
-                levelManager.GoToLastCheckpoints();
+            levelManager.GoToLastCheckpoints();
             Resucite();
         }
 

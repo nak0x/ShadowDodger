@@ -12,7 +12,7 @@ namespace Checkpoints
 
         [Header("Checkpoint visuals")]
         [SerializeField] private Renderer checkpointRenderer;
-
+        [SerializeField] private Light checkpointLight;
         [SerializeField] private string colorField = "_EmissionColor";
         [SerializeField] private Color triggeredColor = Color.white;
 
@@ -30,6 +30,7 @@ namespace Checkpoints
         private void TriggerCheckpoint()
         {
             checkpointRenderer.material.SetColor(colorField, triggeredColor);
+            checkpointLight.color = triggeredColor;
             _triggered = true;
         }
     }

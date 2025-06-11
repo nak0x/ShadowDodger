@@ -20,7 +20,6 @@ namespace Level
 
         public void SetCurrentCheckPoint(GameObject checkPoint)
         {
-            Debug.Log(checkPoint.name);
             currentCheckPointPosition = checkPoint.transform.position;
             _lastCheckPointIndex = _currentCheckPointIndex;
             _currentCheckPointIndex = GetCheckPointIndex(checkPoint);
@@ -28,7 +27,6 @@ namespace Level
 
         public GameObject GetLastCheckPoint()
         {
-            Debug.Log("Last checkpoint : " + checkPoints[_lastCheckPointIndex]);
             return checkPoints[_lastCheckPointIndex];
         }
 

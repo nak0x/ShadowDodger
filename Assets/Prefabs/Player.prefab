@@ -4842,6 +4842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6208920514718774933}
+  - component: {fileID: 6396656623881722098}
   - component: {fileID: 3292504592749384516}
   - component: {fileID: 1998915744223653915}
   - component: {fileID: 6435710047161711525}
@@ -4869,6 +4870,20 @@ Transform:
   - {fileID: 5971578664425004536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6396656623881722098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812368796118708188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7869d63758a41354ca3917cb2421f11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerBody: {fileID: 5600883051083440529}
+  _playerCamera: {fileID: 3094602544716430924}
 --- !u!114 &3292504592749384516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4900,6 +4915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLifes: 3
   remainingLife: 3
+  battery: {fileID: 0}
   levelManager: {fileID: 0}
 --- !u!114 &6435710047161711525
 MonoBehaviour:
@@ -5245,7 +5261,7 @@ GameObject:
   - component: {fileID: 3798368120682868394}
   - component: {fileID: 6597004056213230221}
   m_Layer: 8
-  m_Name: PlayerPOV
+  m_Name: PlayerFollowingCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
