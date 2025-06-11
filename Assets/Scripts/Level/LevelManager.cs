@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Level
 {
@@ -9,8 +10,8 @@ namespace Level
     {
         private bool _isGameEnded = false;
 
-        [Header("Level checkpoints")] [SerializeField]
-        private CheckPoints checkPoints;
+        [FormerlySerializedAs("checkPoints")] [Header("Level checkpoints")] [SerializeField]
+        private LevelCheckPointsManager levelCheckPointsManager;
 
         [Header("Player")] [SerializeField] private GameObject player;
 
@@ -25,8 +26,8 @@ namespace Level
 
         public void GoToLastCheckpoints()
         {
-            checkPoints.SetCurrentCheckPoint(checkPoints.GetLastCheckPoint());
-            player.transform.position = checkPoints.currentCheckPointPosition;
+            levelCheckPointsManager.SetCurrentCheckPoint(levelCheckPointsManager.GetLastCheckPoint());
+            player.transform.position = levelCheckPointsManager.currentCheckPointPosition;
         }
 
         private static IEnumerator RestartLevel()

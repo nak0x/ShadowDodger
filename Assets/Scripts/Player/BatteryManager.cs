@@ -21,16 +21,12 @@ namespace Player
         public void Drain(float deltaTime) => batteryPercentage = Mathf.Max(0, batteryPercentage - drainRate * deltaTime);
         
         public bool GetInCharge() => _inCharge;
-        public bool SetInCharge(bool value) => _inCharge = value;
+        public void SetInCharge(bool value) => _inCharge = value;
 
         private void Update()
         {
-            if (!_inCharge)
-            {
-                Drain(Time.deltaTime);
-            }
             if (debug)
-                Debug.Log("Battery Level : " + batteryPercentage);
+                Debug.Log("Battery Level : " + batteryPercentage + " Charge state : " + _inCharge);
         }
     }
 }

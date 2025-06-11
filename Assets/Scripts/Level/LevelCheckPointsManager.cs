@@ -1,11 +1,10 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Level
 {
-    public class CheckPoints : MonoBehaviour
+    public class LevelCheckPointsManager : MonoBehaviour
     {
-        [Header("CheckPoints")]
+        [Header("LevelCheckPointsManager")]
         [SerializeField] private GameObject[] checkPoints;
 
         public Vector3 currentCheckPointPosition;

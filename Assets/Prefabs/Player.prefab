@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622213309059227912}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 120.37
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4961,10 +4961,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 111.1
-  m_Range: 105.13
-  m_SpotAngle: 60.1202
-  m_InnerSpotAngle: 42.81921
+  m_Intensity: 13.9
+  m_Range: 22.138842
+  m_SpotAngle: 72.04835
+  m_InnerSpotAngle: 11.557786
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -5004,7 +5004,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6387
+  m_ColorTemperature: 6537
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -5193,11 +5193,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 2
-  followingCamera: {fileID: 4639117627261111999}
-  verticalRotation: {x: -5, y: 20}
   PlayerRB: {fileID: 7963619643930924323}
   PlayerCol: {fileID: 3741841048419114245}
   moveSpeed: 5
+  battery: {fileID: 0}
 --- !u!114 &8602745353580211661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5211,6 +5210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 1887382637527175277}
+  particlesTransform: {fileID: 1262793367370242254}
   PlayerRB: {fileID: 7963619643930924323}
 --- !u!114 &8434887184141988411
 MonoBehaviour:
@@ -5225,10 +5225,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battery: {fileID: 3292504592749384516}
-  inductionPower: 0.8
+  inductionPower: 11.4
   inductionLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
 --- !u!1 &6447716546091376322
 GameObject:
   m_ObjectHideFlags: 0
@@ -5256,13 +5256,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6447716546091376322}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13509223, y: -0, z: -0, w: 0.9908331}
-  m_LocalPosition: {x: 0, y: 1.17, z: -2.84}
+  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
+  m_LocalPosition: {x: -10, y: 9.48, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5971578664425004536}
-  m_LocalEulerAnglesHint: {x: 15.528, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
 --- !u!20 &3094602544716430924
 Camera:
   m_ObjectHideFlags: 0
@@ -5297,8 +5297,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 2.97
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5346,7 +5346,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
