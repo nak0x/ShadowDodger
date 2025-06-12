@@ -35,14 +35,14 @@ namespace Player
         {
             remainingLife = maxLifes;
             if (levelManager == null)
-                Debug.LogError("No levelManager assigned to player life manager");
+                Debug.LogError("No levelManager assigned to player life Manager");
         }
 
         public void Die(Player.Death cause)
         {
             Debug.Log("Player is dead : " + cause);
             remainingLife--;
-            levelManager.GoToLastCheckpoints();
+            levelManager.GoToLastCheckpoint();
             Resucite();
         }
 

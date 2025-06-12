@@ -14,5 +14,10 @@ namespace Player
             Debug.Log("TP player to position : " + position);
             _playerBody.transform.position = position;
         }
+
+        public GameObject GetPlayerBody()
+        {
+            return _playerBody;
+        }
     }
 }
