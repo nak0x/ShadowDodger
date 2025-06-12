@@ -14,7 +14,6 @@ namespace Player
 
         public void OnTriggerEnter(Collider other)
         {
-            Debug.Log("OnTriggerEnter");
             int layer = other.gameObject.layer;
             if (layer == inductionLayerMask.value)
                 battery.SetInCharge(true);
@@ -22,7 +21,6 @@ namespace Player
 
         public void OnTriggerStay(Collider other)
         {
-            Debug.Log("OnTriggerStay");
             int layer = other.gameObject.layer;
             if (layer == inductionLayerMask.value)
                 battery.Charge(Time.deltaTime, inductionPower);
@@ -30,7 +28,6 @@ namespace Player
 
         public void OnTriggerExit(Collider other)
         {
-            Debug.Log("OnTriggerStay");
             int layer = other.gameObject.layer;
             if (layer == inductionLayerMask.value)
                 battery.SetInCharge(false);

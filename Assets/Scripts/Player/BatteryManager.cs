@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class BatteryManager : MonoBehaviour
+    public class BatteryManager : MonoBehaviour, Utils.IDevSerializable
     {
         [Header("Game Manager")]
         [SerializeField] private PlayerLifeManager lifeManager;
@@ -27,6 +27,20 @@ namespace Player
         {
             if (debug)
                 Debug.Log("Battery Level : " + batteryPercentage + " Charge state : " + _inCharge);
+            if (batteryPercentage <= 0)
+            {
+                lifeManager.Die(Death.Energy);
+            }
+        }
+
+        public void refill(float percentage=100f)
+        {
+            batteryPercentage = percentage;
+        }
+
+        public string DevSerialize()
+        {
+            return $"Bat Level : {batteryPercentage} | Charge state : {_inCharge}";
         }
     }
 }
