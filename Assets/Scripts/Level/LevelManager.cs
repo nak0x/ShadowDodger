@@ -17,7 +17,7 @@ namespace Level
         [Header("Player")]
         [SerializeField] private PlayerManager player;
 
-        public void EndGame()
+        public void EndLevel()
         {
             if (!_isGameEnded)
             {

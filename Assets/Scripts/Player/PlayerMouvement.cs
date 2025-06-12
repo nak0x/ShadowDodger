@@ -15,6 +15,9 @@ internal class PlayerMouvement : MonoBehaviour
     [Header("Power Sources")]
     [SerializeField] private BatteryManager battery;
 
+    [Header("Player")]
+    [SerializeField] private PlayerStateMachine playerState;
+
     private float _moveHorizontal;
     private float _moveForward;
     private float _facingAngle;
@@ -39,7 +42,10 @@ internal class PlayerMouvement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (playerState.GetStateName() == "IdleState" || playerState.GetStateName() == "MoveState")
+        {
+            MovePlayer();
+        }
     }
 
     private void MovePlayer()

@@ -11,18 +11,18 @@ namespace Player
         Damage = 1, 
     }
 
-    public class PlayerLifeManager : MonoBehaviour
+    public class PlayerLifeManager : MonoBehaviour, Utils.IDevSerializable, IPlayerProperty
     {
 
         [Header("Life Settings")]
         public int maxLifes = 3;
         public int remainingLife;
 
-        [Header("Player Energy")]
-        [SerializeField] private BatteryManager battery;
-    
         [Header("Game Integration")]
         [SerializeField] private LevelManager levelManager;
+        [SerializeField] private PlayerStateMachine playerState;
+        [SerializeField] private PlayerManager playerManager;
+
 
         private int _currentLife;
 
@@ -38,17 +38,17 @@ namespace Player
                 Debug.LogError("No levelManager assigned to player life Manager");
         }
 
-        public void Die(Player.Death cause)
+        public void Die(Death cause)
         {
-            Debug.Log("Player is dead : " + cause);
             remainingLife--;
             levelManager.GoToLastCheckpoint();
-            Resucite();
-        }
-
-        public void Resucite()
-        {
-            battery.refill();
+            playerState.ChangeState(new DeadState(playerManager));
+            if (remainingLife <= 0)
+            {
+                levelManager.EndLevel();
+                return;
+            }
+            playerManager.ResetPlayer();
         }
 
         public void Heal(int amount = 1)
@@ -56,6 +56,20 @@ namespace Player
             remainingLife += amount;
             if (remainingLife > maxLifes)
                 remainingLife = maxLifes;
+        }
+
+        public string DevSerialize()
+        {
+            return $"Player remaining lifes : {remainingLife}";
+        }
+
+        public void ResetProperty(PlayerResetType resetType = PlayerResetType.Medium)
+        {
+            if (resetType == PlayerResetType.Heavy)
+            {
+                remainingLife = maxLifes;
+                _currentLife = maxLifes;
+            }
         }
     }
 }
