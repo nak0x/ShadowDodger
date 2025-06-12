@@ -25,6 +25,12 @@ namespace Level
             _currentCheckPointIndex = GetCheckPointIndex(checkPoint);
         }
 
+        public void SetCurrentToLastCheckPoint()
+        {
+            currentCheckPointPosition = checkPoints[_lastCheckPointIndex].transform.position;
+            _currentCheckPointIndex = _lastCheckPointIndex;
+        }
+
         public GameObject GetLastCheckPoint()
         {
             return checkPoints[_lastCheckPointIndex];

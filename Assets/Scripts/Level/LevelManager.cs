@@ -28,7 +28,7 @@ namespace Level
 
         public void GoToLastCheckpoints()
         {
-            levelCheckPointsManager.SetCurrentCheckPoint(levelCheckPointsManager.GetLastCheckPoint());
+            levelCheckPointsManager.SetCurrentToLastCheckPoint();
             player.TP(levelCheckPointsManager.currentCheckPointPosition);
         }
 
