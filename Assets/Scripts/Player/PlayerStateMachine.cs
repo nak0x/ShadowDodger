@@ -5,7 +5,6 @@ namespace Player
     public abstract class PlayerState
     {
         protected PlayerManager Manager;
-        
         protected PlayerState(PlayerManager manager) {this.Manager = manager;}
 
         public virtual void Enter() {}
@@ -17,60 +16,27 @@ namespace Player
     {
         public IdleState(PlayerManager manager) : base(manager) {}
 
-        public override void Enter()
-        {
-            /* Do nothing for now */
-        }
-
-        public override void Exit()
-        {
-            /* Exiting a nothing state does nothing */
-        }
-        
-        public override void Update()
-        {
-            /* Updating */
-        }
+        public override void Enter() {}
+        public override void Exit() {}
+        public override void Update() {}
     }
 
     public class MoveState : PlayerState
     {
         public MoveState(PlayerManager manager) : base(manager) {}
 
-        public override void Enter()
-        {
-            /* Do nothing for now */
-        }
-
-        public override void Exit()
-        {
-            /* Exiting a nothing state does nothing */
-        }
-        
-        public override void Update()
-        {
-            /* Updating */
-        }
+        public override void Enter() {}
+        public override void Exit() {}
+        public override void Update() {}
     }
 
     public class DeadState : PlayerState
     {
         public DeadState(PlayerManager manager) : base(manager) {}
 
-        public override void Enter()
-        {
-            /* Do nothing for now */
-        }
-
-        public override void Exit()
-        {
-            /* Exiting a nothing state does nothing */
-        }
-        
-        public override void Update()
-        {
-            /* Updating */
-        }
+        public override void Enter() {}
+        public override void Exit() {}
+        public override void Update() {}
     }
 
     public class PlayerStateMachine : MonoBehaviour, Utils.IDevSerializable, IPlayerProperty
