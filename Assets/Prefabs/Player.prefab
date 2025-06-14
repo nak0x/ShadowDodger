@@ -4898,6 +4898,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerBody: {fileID: 5600883051083440529}
   _playerCamera: {fileID: 3094602544716430924}
+  _playerGOs:
+  - {fileID: 2812368796118708188}
+  - {fileID: 5600883051083440529}
+  - {fileID: 2966964976567121062}
+  _playerName: Player
 --- !u!114 &3292504592749384516
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,11 +9,34 @@ namespace Player
         [SerializeField] private GameObject _playerBody;
         [SerializeField] private Camera _playerCamera;
 
-        [SerializeField] private List<IPlayerProperty> _playerProperties;
+        [Header("Player properties")]
+        [SerializeField] private List<GameObject> _playerGOs;
         [SerializeField] private string _playerName = "Player";
+
+        private List<IPlayerProperty> _playerProperties = new List<IPlayerProperty>();
+
+        public void Awake()
+        {
+            foreach (var go in _playerGOs)
+            {
+                if (go.TryGetComponent<IPlayerProperty>(out var property))
+                {
+                    _playerProperties.Add(property);
+                }
+                else
+                {
+                    Debug.LogWarning($"GameObject {go.name} does not implement IPlayerProperty interface.");
+                }
+            }
+        }
 
         public void TP(Vector3 position)
         {
+            if (_playerBody == null)
+            {
+                Debug.LogError("Player body is not assigned!");
+                return;
+            }
             _playerBody.transform.position = position;
         }
 
