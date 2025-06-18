@@ -40,6 +40,8 @@ namespace Player
     {
       if (debug)
         Debug.Log("Battery Level : " + batteryPercentage + " Charge state : " + _inCharge);
+
+      // Kill the player if battery is empty
       if (batteryPercentage <= 0)
       {
         lifeManager.Die(Death.Energy);

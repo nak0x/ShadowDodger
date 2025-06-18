@@ -74,6 +74,7 @@ namespace Player
 
         public void ResetProperty(PlayerResetType resetType = PlayerResetType.Medium)
         {
+            Debug.Log($"Resetting PlayerStateMachine with type: {resetType}");
             // Reset the player state to idle on reset
             if (resetType != PlayerResetType.Light)
                 ChangeState(new IdleState(playerManager));

@@ -46,6 +46,11 @@ internal class PlayerMouvement : MonoBehaviour
         {
             MovePlayer();
         }
+        else
+        {
+            // If not in idle or move state, stop movement
+            PlayerRB.linearVelocity = Vector3.zero;
+        }
     }
 
     private void MovePlayer()

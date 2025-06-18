@@ -48,7 +48,7 @@ namespace Player
                 levelManager.EndLevel();
                 return;
             }
-            playerManager.ResetPlayer();
+            playerManager.ResetPlayer(PlayerResetType.Medium);
         }
 
         public void Heal(int amount = 1)

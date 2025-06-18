@@ -19,8 +19,11 @@ namespace Player
         {
             foreach (var go in _playerGOs)
             {
+                bool hasProperty = go.TryGetComponent<IPlayerProperty>(out var tempProperty);
+                Debug.Log($"Initializing player property from GameObject: {go.name} | Has IPlayerProperty: {hasProperty}");
                 if (go.TryGetComponent<IPlayerProperty>(out var property))
                 {
+                    Debug.Log($"Adding property: {property.GetType().Name} from GameObject: {go.name}");
                     _playerProperties.Add(property);
                 }
                 else
@@ -44,6 +47,7 @@ namespace Player
         {
             foreach (var property in _playerProperties)
             {
+                Debug.Log($"Resetting property: {property.GetType().Name} with reset type: {resetType}");
                 property.ResetProperty(resetType);
             }
         }
