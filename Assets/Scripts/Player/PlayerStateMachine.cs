@@ -49,14 +49,14 @@ namespace Player
 
         private void OnEnable()
         {
-            GameEvents.PlayerDied += OnPlayerDied;
-            GameEvents.PlayerRespawned += OnPlayerRespawned;
+            EventManager.Subscribe(EventType.PlayerDied, OnPlayerDied);
+            EventManager.Subscribe(EventType.PlayerRespawned, OnPlayerRespawned);
         }
 
         private void OnDisable()
         {
-            GameEvents.PlayerDied -= OnPlayerDied;
-            GameEvents.PlayerRespawned -= OnPlayerRespawned;
+            EventManager.Unsubscribe(EventType.PlayerDied, OnPlayerDied);
+            EventManager.Unsubscribe(EventType.PlayerRespawned, OnPlayerRespawned);
         }
 
         private void Start()

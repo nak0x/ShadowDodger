@@ -26,6 +26,7 @@ namespace Player
 
 
         private int _currentLife;
+        private bool _isDead = false;
 
         public int GetCurrentLife()
         {
@@ -41,12 +42,13 @@ namespace Player
 
         public void Die(Death cause)
         {
-            if (playerState.GetStateName() == "DeadState")
+            if (_isDead)
                 return;
 
+            _isDead = true;
             remainingLife--;
             levelManager.GoToLastCheckpoint();
-            GameEvents.OnPlayerDied();
+            EventManager.Emit(EventType.PlayerDied);
 
             if (remainingLife <= 0)
             {
@@ -55,7 +57,8 @@ namespace Player
             }
 
             playerManager.ResetPlayer();
-            GameEvents.OnPlayerRespawned();
+            _isDead = false;
+            EventManager.Emit(EventType.PlayerRespawned);
         }
 
         public void Heal(int amount = 1)
