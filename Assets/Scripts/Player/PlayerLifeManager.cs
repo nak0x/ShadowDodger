@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using Events;
 using Level;
 
 namespace Player
@@ -40,15 +41,21 @@ namespace Player
 
         public void Die(Death cause)
         {
+            if (playerState.GetStateName() == "DeadState")
+                return;
+
             remainingLife--;
             levelManager.GoToLastCheckpoint();
-            playerState.ChangeState(new DeadState(playerManager));
+            GameEvents.OnPlayerDied();
+
             if (remainingLife <= 0)
             {
                 levelManager.EndLevel();
                 return;
             }
+
             playerManager.ResetPlayer();
+            GameEvents.OnPlayerRespawned();
         }
 
         public void Heal(int amount = 1)

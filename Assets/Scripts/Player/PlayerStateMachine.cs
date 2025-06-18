@@ -1,4 +1,5 @@
 using UnityEngine;
+using Events;
 
 namespace Player
 {
@@ -46,9 +47,31 @@ namespace Player
         [Header("Player Manager")]
         [SerializeField] private PlayerManager playerManager;
 
+        private void OnEnable()
+        {
+            GameEvents.PlayerDied += OnPlayerDied;
+            GameEvents.PlayerRespawned += OnPlayerRespawned;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.PlayerDied -= OnPlayerDied;
+            GameEvents.PlayerRespawned -= OnPlayerRespawned;
+        }
+
         private void Start()
         {
             // Initialize the player state machine with the idle state
+            ChangeState(new IdleState(playerManager));
+        }
+
+        private void OnPlayerDied()
+        {
+            ChangeState(new DeadState(playerManager));
+        }
+
+        private void OnPlayerRespawned()
+        {
             ChangeState(new IdleState(playerManager));
         }
 
