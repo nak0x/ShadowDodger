@@ -75,3 +75,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 .fake
+
+# Editors
+.idea/
+.vscode/
