@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 namespace Player
 {
@@ -39,7 +40,7 @@ namespace Player
         public override void Update() {}
     }
 
-    public class PlayerStateMachine : MonoBehaviour, Utils.IDevSerializable, IPlayerProperty
+    public class PlayerStateMachine : ResetableMonoBehaviour, Utils.IDevSerializable
     {
         private PlayerState _current;
 
@@ -72,9 +73,8 @@ namespace Player
             return $"Player state : {GetStateName()}";
         }
 
-        public void ResetProperty(PlayerResetType resetType = PlayerResetType.Medium)
+        public override void ResetProperty(PlayerResetType resetType = PlayerResetType.Medium)
         {
-            Debug.Log($"Resetting PlayerStateMachine with type: {resetType}");
             // Reset the player state to idle on reset
             if (resetType != PlayerResetType.Light)
                 ChangeState(new IdleState(playerManager));

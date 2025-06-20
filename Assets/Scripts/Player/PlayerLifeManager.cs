@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using Level;
+using Utils;
 
 namespace Player
 {
@@ -11,7 +12,7 @@ namespace Player
         Damage = 1, 
     }
 
-    public class PlayerLifeManager : MonoBehaviour, Utils.IDevSerializable, IPlayerProperty
+    public class PlayerLifeManager : ResetableMonoBehaviour, Utils.IDevSerializable
     {
 
         [Header("Life Settings")]
@@ -41,14 +42,14 @@ namespace Player
         public void Die(Death cause)
         {
             remainingLife--;
-            levelManager.GoToLastCheckpoint();
-            playerState.ChangeState(new DeadState(playerManager));
             if (remainingLife <= 0)
             {
                 levelManager.EndLevel();
                 return;
             }
+            playerState.ChangeState(new DeadState(playerManager));
             playerManager.ResetPlayer(PlayerResetType.Medium);
+            levelManager.GoToLastCheckpoint();
         }
 
         public void Heal(int amount = 1)
@@ -63,7 +64,7 @@ namespace Player
             return $"Player remaining lifes : {remainingLife}";
         }
 
-        public void ResetProperty(PlayerResetType resetType = PlayerResetType.Medium)
+        public override void ResetProperty(PlayerResetType resetType = PlayerResetType.Medium)
         {
             if (resetType == PlayerResetType.Heavy)
             {

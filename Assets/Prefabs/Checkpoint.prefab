@@ -128,6 +128,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  checkpointRenderer: {fileID: 0}
+  checkpointLight: {fileID: 0}
+  colorField: _EmissionColor
+  triggeredColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &5860344830460094037
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +183,7 @@ Light:
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
-    m_Resolution: -1
+    m_Resolution: 128
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
@@ -240,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 0
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0

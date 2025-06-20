@@ -22,7 +22,7 @@ namespace Level
             if (!_isGameEnded)
             {
                 _isGameEnded = true;
-                StartCoroutine(RestartLevel());
+                RestartLevel();
             }
         }
 
@@ -32,9 +32,8 @@ namespace Level
             player.TP(levelCheckPointsManager.currentCheckPointPosition);
         }
 
-        private static IEnumerator RestartLevel()
+        private void RestartLevel()
         {
-            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
