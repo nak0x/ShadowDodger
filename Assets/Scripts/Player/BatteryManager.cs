@@ -1,8 +1,9 @@
 using UnityEngine;
+using Utils;
 
 namespace Player
 {
-  public class BatteryManager : MonoBehaviour, Utils.IDevSerializable, IPlayerProperty
+  public class BatteryManager : ResetableMonoBehaviour, Utils.IDevSerializable
   {
     [Header("Game Manager")]
     [SerializeField] private PlayerLifeManager lifeManager;
@@ -58,7 +59,7 @@ namespace Player
       return $"Bat Level : {batteryPercentage} | Charge state : {_inCharge}";
     }
 
-    public void ResetProperty(PlayerResetType resetType = PlayerResetType.Medium)
+    public override void ResetProperty(PlayerResetType resetType = PlayerResetType.Medium)
     {
       if (resetType != PlayerResetType.Light)
       {

@@ -4842,8 +4842,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6208920514718774933}
-  - component: {fileID: 3370674266126434647}
   - component: {fileID: 6396656623881722098}
+  - component: {fileID: 3370674266126434647}
   - component: {fileID: 3292504592749384516}
   - component: {fileID: 1998915744223653915}
   - component: {fileID: 6435710047161711525}
@@ -4871,19 +4871,6 @@ Transform:
   - {fileID: 5971578664425004536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3370674266126434647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2812368796118708188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe5006430ff64a9995ad846537f8ed87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerManager: {fileID: 6396656623881722098}
 --- !u!114 &6396656623881722098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4898,11 +4885,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerBody: {fileID: 5600883051083440529}
   _playerCamera: {fileID: 3094602544716430924}
-  _playerGOs:
-  - {fileID: 2812368796118708188}
-  - {fileID: 5600883051083440529}
-  - {fileID: 2966964976567121062}
+  _playerProperties:
+  - {fileID: 3370674266126434647}
+  - {fileID: 3292504592749384516}
+  - {fileID: 1998915744223653915}
   _playerName: Player
+--- !u!114 &3370674266126434647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812368796118708188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5006430ff64a9995ad846537f8ed87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerManager: {fileID: 6396656623881722098}
 --- !u!114 &3292504592749384516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5066,7 +5066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
