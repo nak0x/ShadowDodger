@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using Level;
+using Utils;
 
 namespace Player
 {
@@ -10,41 +11,66 @@ namespace Player
         Energy = 0,
         Damage = 1, 
     }
-}
 
-public class PlayerLifeManager : MonoBehaviour
-{
-
-    [Header("Life Settings")]
-    public int maxLifes = 3;
-    public int remainingLife;
-    
-    [Header("Game Integration")]
-    [SerializeField] private LevelManager levelManager;
-
-    private int _currentLife;
-
-    public int GetCurrentLife()
+    public class PlayerLifeManager : ResetableMonoBehaviour, Utils.IDevSerializable
     {
-        return _currentLife;
-    }
 
-    void Start()
-    {
-        remainingLife = maxLifes;
-    }
+        [Header("Life Settings")]
+        public int maxLifes = 3;
+        public int remainingLife;
 
-    public void Die(Player.Death cause)
-    {
-        remainingLife--;
-        if (remainingLife <= 0)
-            levelManager.GoToLastCheckpoints();
-    }
+        [Header("Game Integration")]
+        [SerializeField] private LevelManager levelManager;
+        [SerializeField] private PlayerStateMachine playerState;
+        [SerializeField] private PlayerManager playerManager;
 
-    public void Heal(int amount = 1)
-    {
-        remainingLife += amount;
-        if (remainingLife > maxLifes)
+
+        private int _currentLife;
+
+        public int GetCurrentLife()
+        {
+            return _currentLife;
+        }
+
+        void Start()
+        {
             remainingLife = maxLifes;
+            if (levelManager == null)
+                Debug.LogError("No levelManager assigned to player life Manager");
+        }
+
+        public void Die(Death cause)
+        {
+            remainingLife--;
+            if (remainingLife <= 0)
+            {
+                levelManager.EndLevel();
+                return;
+            }
+            playerState.ChangeState(new DeadState(playerManager));
+            playerManager.ResetPlayer(PlayerResetType.Medium);
+            levelManager.GoToLastCheckpoint();
+        }
+
+        public void Heal(int amount = 1)
+        {
+            remainingLife += amount;
+            if (remainingLife > maxLifes)
+                remainingLife = maxLifes;
+        }
+
+        public string DevSerialize()
+        {
+            return $"Player remaining lifes : {remainingLife}";
+        }
+
+        public override void ResetProperty(PlayerResetType resetType = PlayerResetType.Medium)
+        {
+            if (resetType == PlayerResetType.Heavy)
+            {
+                remainingLife = maxLifes;
+                _currentLife = maxLifes;
+            }
+        }
     }
 }

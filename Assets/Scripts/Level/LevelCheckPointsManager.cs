@@ -1,3 +1,4 @@
+using System.Net;
 using UnityEngine;
 
 namespace Level
@@ -7,6 +8,7 @@ namespace Level
         [Header("LevelCheckPointsManager")]
         [SerializeField] private GameObject[] checkPoints;
 
+        [System.NonSerialized]
         public Vector3 currentCheckPointPosition;
     
         private int _lastCheckPointIndex = 0;
@@ -14,7 +16,10 @@ namespace Level
 
         void Start()
         {
-            currentCheckPointPosition = checkPoints[0].transform.position;
+            if (checkPoints.Length == 0)
+                Debug.LogError("No checkpoints assigned into LevelCheckPointsManager");
+            if (checkPoints.Length >= 1)
+                currentCheckPointPosition = checkPoints[0].transform.position;
         }
 
         public void SetCurrentCheckPoint(GameObject checkPoint)
@@ -24,6 +29,12 @@ namespace Level
             _currentCheckPointIndex = GetCheckPointIndex(checkPoint);
         }
 
+        public void SetCurrentToLastCheckPoint()
+        {
+            currentCheckPointPosition = checkPoints[_lastCheckPointIndex].transform.position;
+            _currentCheckPointIndex = _lastCheckPointIndex;
+        }
+
         public GameObject GetLastCheckPoint()
         {
             return checkPoints[_lastCheckPointIndex];
@@ -31,12 +42,7 @@ namespace Level
 
         private int GetCheckPointIndex(GameObject checkPoint)
         {
-            for (int i = 0; i < checkPoints.Length; i++)
-            {
-                if (checkPoints[i] == checkPoint)
-                    return i;
-            }
-            return -1;
+            return System.Array.IndexOf(checkPoints, checkPoint);
         }
     }
 }

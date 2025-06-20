@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ShadowDodger.sln"
+    "dotnet.defaultSolution": "ShadowDodger.sln",
+    "dotnet.preferCSharpExtension": true
 }
