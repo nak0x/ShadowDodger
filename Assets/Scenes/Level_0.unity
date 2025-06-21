@@ -1523,9 +1523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a4245408e0c454abba1e38434e8210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkPrefab: {fileID: 7258492087857760138, guid: 705474250e0e04c089c78cb973091821, type: 3}
-  baseSize: 5
-  chunkSize: 5
 --- !u!1 &1543173949
 GameObject:
   m_ObjectHideFlags: 0
