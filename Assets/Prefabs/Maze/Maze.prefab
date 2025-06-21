@@ -47,10 +47,11 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   MazeWidth: 5
   MazeHeight: 5
+  MazeMaxCorridorLength: 2
   MazeDangerousSizeLimit: 10000
   nodePrefab: {fileID: 2000221101745416753, guid: eb7f602aaea5948e498755b352a6f86a, type: 3}
   nodeMeshSize: 5
   initialShuffleFactor: 10
   intervalSeconds: 15
   enableRuntimeShuffle: 0
-  runtimeShuffleSteps: 10
+  runtimeShuffleSteps: 100

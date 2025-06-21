@@ -17,6 +17,8 @@ namespace Maze
         [SerializeField] private Vector2Int origin = new Vector2Int(0, 0);
         [SerializeField] public int MazeWidth = 10;
         [SerializeField] public int MazeHeight = 10;
+        [Tooltip("Maximum length of a corridor in the maze. This prevents corridors from being too long, which can lead to bad mazes.")]
+        [SerializeField] public int MazeMaxCorridorLength = 5;
         [Tooltip("Maximum size of the maze. If the maze exceeds this size, it may cause performance issues. This will not prevent the maze from being generated.")]
         [SerializeField] private int MazeDangerousSizeLimit = 10000;
         
@@ -51,6 +53,9 @@ namespace Maze
         /// Timer to control the interval for runtime shuffling.
         /// </summary>
         private float timer;
+
+        private int _lastJumpAngle = -1;
+        private int _sameAngleJumpCount = 0;
 
         /// <summary>
         /// Dictionary to map node directions to angles.
@@ -163,14 +168,50 @@ namespace Maze
             return directions[_mazeSeed.GetRandomValue(origin.x, origin.y, 0, directions.Count)];
         }
 
+        bool PreventLongCorridorJump(int angle)
+        {
+            if (angle == _lastJumpAngle)
+            {
+                _sameAngleJumpCount++;
+                if (_sameAngleJumpCount > MazeMaxCorridorLength)
+                {
+                    _sameAngleJumpCount = 0;
+                    return true; // Prevent long corridor jumps
+                }
+            }
+            else
+            {
+                _sameAngleJumpCount = 0; // Reset count if the angle changes
+            }
+            _lastJumpAngle = angle;
+            return false;
+        }
 
+
+        /// <summary>
+        /// Performs a jump from the current origin node to a new node in a random direction.
+        /// The jump direction is determined by the available directions based on the current origin position.
+        /// The origin node's direction is set to the jump direction, and the origin is updated accordingly.
+        /// If the jump direction is out of bounds, it will not perform the jump.
+        /// This method is used to create a randomized maze structure by moving the origin node around the maze.
+        /// The origin node's direction is set to -1 after the jump to indicate no direction.
+        /// </summary>
         void PerformOriginJump()
         {
             // Get a random jump direction
             int angle = nodeDirections[GetAvailableRandomDirection()];
 
+            const int maxLoopTries = 100;
+            int tries = 0;
+            while (PreventLongCorridorJump(angle) && tries < maxLoopTries)
+            {
+                // If the jump direction is not valid, get a new random direction
+                angle = nodeDirections[GetAvailableRandomDirection()];
+                tries++;
+            }
+
             // Set the direction of the current node to the jump direction
-            mazeNodes[origin.x, origin.y].SetNodeDirection(angle);
+                mazeNodes[origin.x, origin.y].SetNodeDirection(angle);
 
             // Move the origin in the specified direction
             if (angle == 0 || angle == 180)
