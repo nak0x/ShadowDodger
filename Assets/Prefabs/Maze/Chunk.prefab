@@ -901,11 +901,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2aa111ae141f41d6a59a6fd9ba21aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walls:
-  - {fileID: 962287505327431544}
-  - {fileID: 7744952491582948245}
-  - {fileID: 1200385288123359180}
-  - {fileID: 3643117930915988955}
+  leftWalls: {fileID: 3643117930915988955}
+  rightWalls: {fileID: 1200385288123359180}
+  topWalls: {fileID: 962287505327431544}
+  bottomWalls: {fileID: 7744952491582948245}
   activeWalls: {x: 1, y: 1, z: 1, w: 1}
 --- !u!1 &7643144390978666626
 GameObject:

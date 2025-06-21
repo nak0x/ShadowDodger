@@ -219,7 +219,7 @@ namespace Maze
                 Vector2Int current = spiralPath[i];
                 Vector2Int next = spiralPath[i + 1];
 
-                Vector3 dir = mazeNodes[next.x, next.y].GetPosition() - mazeNodes[current.x, current.y].GetPosition();
+                Vector3 dir = mazeNodes[next.x, next.y].GetMazePosition() - mazeNodes[current.x, current.y].GetMazePosition();
                 float angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
                 // Normalize to 0, 90, 180, 270
@@ -274,7 +274,7 @@ namespace Maze
         /// <exception cref="System.Exception">Throw an exception if the node at x,z coord does not exists.</exception>
         private MazeNode GetTargettingNode(int x, int z)
         {
-            int angle = (int)mazeNodes[x, z]?.GetNodeDirection();
+            int angle = mazeNodes[x, z]?.GetNodeDirection() ?? -1; // Get the direction of the current node, default to -1 if null
             if (angle == 0 || angle == 180)
             {
                 return mazeNodes[x + nodeAngleMatriceModificator[angle], z] ?? throw new System.Exception($"MazeNode at ({x + nodeAngleMatriceModificator[angle]}, {z}) is null. Ensure nodes are spawned correctly.");
