@@ -1,6 +1,4 @@
-using System.Collections;
 using Player;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -11,11 +9,20 @@ namespace Level
     {
         private bool _isGameEnded = false;
 
+        [Header("Level Settings")]
+        [SerializeField] private int levelIndex = 0;
+        [SerializeField] private MapManager mapManager;
+
         [FormerlySerializedAs("checkPoints")] [Header("Level checkpoints")] [SerializeField]
         private LevelCheckPointsManager levelCheckPointsManager;
 
         [Header("Player")]
         [SerializeField] private PlayerManager player;
+
+        public void Awake()
+        {
+            mapManager.GenerateLevel(levelIndex);
+        }
 
         public void EndLevel()
         {
