@@ -5244,6 +5244,7 @@ GameObject:
   - component: {fileID: 1377987885274329586}
   - component: {fileID: 8602745353580211661}
   - component: {fileID: 8434887184141988411}
+  - component: {fileID: 2780223469357586267}
   m_Layer: 8
   m_Name: Body
   m_TagString: Player
@@ -5338,7 +5339,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5421,6 +5422,29 @@ MonoBehaviour:
   inductionLayerMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!136 &2780223469357586267
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5600883051083440529}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.38
+  m_Height: 1.18
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.09, z: 0}
 --- !u!1 &6447716546091376322
 GameObject:
   m_ObjectHideFlags: 0
