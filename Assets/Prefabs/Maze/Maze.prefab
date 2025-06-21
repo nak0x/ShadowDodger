@@ -44,11 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7c2268fe4174f4d8a60d9816129368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origin: {x: 0, y: 0}
   MazeWidth: 5
   MazeHeight: 5
+  MazeDangerousSizeLimit: 10000
   nodePrefab: {fileID: 2000221101745416753, guid: eb7f602aaea5948e498755b352a6f86a, type: 3}
-  cellSize: 5
-  origin: {x: 0, y: 0}
+  nodeMeshSize: 5
+  initialShuffleFactor: 10
   intervalSeconds: 15
-  enableRuntimeShuffle: 1
-  runtimeShuffleSteps: 1
+  enableRuntimeShuffle: 0
+  runtimeShuffleSteps: 10

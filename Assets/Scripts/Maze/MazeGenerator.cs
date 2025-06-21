@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Utils;
 
 namespace Maze
 {
@@ -37,6 +38,21 @@ namespace Maze
         [SerializeField] private int runtimeShuffleSteps = 20;
 
         /// <summary>
+        /// 2D array of MazeNode objects representing the maze.
+        /// </summary>
+        private MazeNode[,] mazeNodes;
+
+        /// <summary>
+        /// Seed used for generating the maze.
+        /// </summary>
+        private Seed _mazeSeed;
+
+        /// <summary>
+        /// Timer to control the interval for runtime shuffling.
+        /// </summary>
+        private float timer;
+
+        /// <summary>
         /// Dictionary to map node directions to angles.
         /// </summary>
         private Dictionary<string, int> nodeDirections = new Dictionary<string, int>
@@ -61,20 +77,70 @@ namespace Maze
 
         private string[] _nodeDirectionsList = new string[] { "down", "right", "up", "left" };
 
-        /// <summary>
-        /// Timer to control the interval for runtime shuffling.
-        /// </summary>
-        private float timer;
 
         /// <summary>
-        /// 2D array of MazeNode objects representing the maze.
+        /// Generates the maze by performing the following steps:
+        /// 1. Instantiates the maze nodes in a grid layout.
+        /// 2. Initializes the orientation of each node in a spiral path.
+        /// 3. Performs an initial shuffle of the maze by jumping from the origin node.
+        /// 4. Renders the maze by instantiating MazeNode meshes at their respective positions.
         /// </summary>
-        private MazeNode[,] mazeNodes;
+        public void GenerateMaze(Seed seed)
+        {
+            if (MazeWidth * MazeHeight >= MazeDangerousSizeLimit)
+            {
+                Debug.LogWarning($"Maze size ({MazeWidth}x{MazeHeight}) exceeds the dangerous limit of {MazeDangerousSizeLimit}. This may cause performance issues.");
+            }
+
+            _mazeSeed = seed;
+
+            // Instantiate the maze nodes
+            SpawnNodes();
+
+            // Initialize the maze nodes' orientations
+            InitializeNodeOrientation();
+
+            // First shuffle of the maze to create a randomized structure
+            InitialShuffle();
+
+            // Instantiate MazeNode meshes
+            RenderMaze();
+        }
+
+        /// <summary>
+        /// Shuffles the maze at runtime by resetting the walls of each MazeNode and performing a series of jumps.
+        /// The number of jumps is determined by the MazeWidth * MazeHeight multiplied by the runtimeShuffleSteps.
+        /// </summary>
+        /// <remarks>
+        /// This method resets the direction of each MazeNode to -1 before performing the jumps.
+        /// It allows for dynamic changes to the maze structure during gameplay.
+        /// </remarks>
+        public void RuntimeShuffle()
+        {
+            _mazeSeed.GenerateNewSeed(); // Reset the seed for runtime shuffling
+
+            for (int x = 0; x < MazeWidth; x++)
+            {
+                for (int z = 0; z < MazeHeight; z++)
+                {
+                    if (mazeNodes[x, z] != null)
+                    {
+                        mazeNodes[x, z].ResetWalls(); // Reset direction to -1
+                    }
+                }
+            }
+
+            int runtimeShuffleCount = MazeWidth * MazeHeight * runtimeShuffleSteps;
+            for (int i = 0; i < runtimeShuffleCount; i++)
+            {
+                PerformOriginJump();
+            }
+        }
 
         /// <summary>
         /// Sets the current origin of the maze.
         /// </summary>
-        public void SetOrigin(int x, int z)
+        void SetOrigin(int x, int z)
         {
             origin = new Vector2Int(x, z);
         }
@@ -94,7 +160,7 @@ namespace Maze
             if (origin.x < MazeWidth - 1) directions.Add("left");
             if (origin.y < MazeHeight - 1) directions.Add("up");
 
-            return directions[Random.Range(0, directions.Count)];
+            return directions[_mazeSeed.GetRandomValue(origin.x, origin.y, 0, directions.Count)];
         }
 
 
@@ -120,26 +186,6 @@ namespace Maze
             mazeNodes[origin.x, origin.y].SetNodeDirection(-1);
         }
 
-        void Awake()
-        {
-            if (MazeWidth * MazeHeight >= MazeDangerousSizeLimit)
-            {
-                Debug.LogWarning($"Maze size ({MazeWidth}x{MazeHeight}) exceeds the dangerous limit of {MazeDangerousSizeLimit}. This may cause performance issues.");
-            }
-
-            // Instantiate the maze nodes
-            SpawnNodes();
-
-            // Initialize the maze nodes' orientations
-            InitializeNodeOrientation();
-
-            // First shuffle of the maze to create a randomized structure
-            InitialShuffle();
-
-            // Instantiate MazeNode meshes
-            RenderMaze();
-        }
-
         /// <summary>
         /// Updates the maze at runtime based on the specified interval.
         /// If runtime shuffling is enabled, it will shuffle the maze nodes at the specified interval.
@@ -163,7 +209,7 @@ namespace Maze
         /// Each node is instantiated at a position determined by the cellSize and its coordinates in the grid.
         /// By default, the nodes orientation is set to -1 (no direction).
         /// </summary>
-        public void SpawnNodes()
+        void SpawnNodes()
         {
             mazeNodes = new MazeNode[MazeWidth, MazeHeight];
 
@@ -187,7 +233,7 @@ namespace Maze
         /// Initializes the orientation of each MazeNode in a spiral path.
         /// The spiral path starts from the top-left corner and moves inward.
         /// </summary>
-        public void InitializeNodeOrientation()
+        void InitializeNodeOrientation()
         {
             List<Vector2Int> spiralPath = new List<Vector2Int>();
 
@@ -238,7 +284,7 @@ namespace Maze
         /// Initializes the maze by performing a series of jumps from the origin node.
         /// The number of jumps is determined by the size of the maze (MazeWidth * MazeHeight) multiplied by a constant factor.
         /// </summary>
-        public void InitialShuffle()
+        void InitialShuffle()
         {
             int initialShuffleCount = MazeWidth * MazeHeight * initialShuffleFactor;
             for (int i = 0; i < initialShuffleCount; i++)
@@ -272,7 +318,7 @@ namespace Maze
         /// <param name="z">Current node matrice Z/Y pos</param>
         /// <returns>Nodes faced by the selected one.</returns>
         /// <exception cref="System.Exception">Throw an exception if the node at x,z coord does not exists.</exception>
-        private MazeNode GetTargettingNode(int x, int z)
+        MazeNode GetTargettingNode(int x, int z)
         {
             int angle = mazeNodes[x, z]?.GetNodeDirection() ?? -1; // Get the direction of the current node, default to -1 if null
             if (angle == 0 || angle == 180)
@@ -284,34 +330,6 @@ namespace Maze
                 return mazeNodes[x, z + nodeAngleMatriceModificator[angle]] ?? throw new System.Exception($"MazeNode at ({x}, {z + nodeAngleMatriceModificator[angle]}) is null. Ensure nodes are spawned correctly.");
             }
             return mazeNodes[x, z] ?? throw new System.Exception($"MazeNode at ({x}, {z}) is null. Ensure nodes are spawned correctly.");
-        }
-
-        /// <summary>
-        /// Shuffles the maze at runtime by resetting the walls of each MazeNode and performing a series of jumps.
-        /// The number of jumps is determined by the MazeWidth * MazeHeight multiplied by the runtimeShuffleSteps.
-        /// </summary>
-        /// <remarks>
-        /// This method resets the direction of each MazeNode to -1 before performing the jumps.
-        /// It allows for dynamic changes to the maze structure during gameplay.
-        /// </remarks>
-        public void RuntimeShuffle()
-        {
-            for (int x = 0; x < MazeWidth; x++)
-            {
-                for (int z = 0; z < MazeHeight; z++)
-                {
-                    if (mazeNodes[x, z] != null)
-                    {
-                        mazeNodes[x, z].ResetWalls(); // Reset direction to -1
-                    }
-                }
-            }
-
-            int runtimeShuffleCount = MazeWidth * MazeHeight * runtimeShuffleSteps;
-            for (int i = 0; i < runtimeShuffleCount; i++)
-            {
-                PerformOriginJump();
-            }
         }
     }
 }
