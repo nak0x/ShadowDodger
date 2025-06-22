@@ -1,11 +1,12 @@
 # Shadow dodger
 
-Shadow dodger is a minimalistic puzzle game.
-Your goal is to traverse a maze with ligth and dark area.
-But be carefull as your energy sink into darkness. And when you die,
-The maze master transform your body into a stone, leading to
-potential self locking.
+ShadowDodger is a maze game, where you incarne an IA, that is missioned by The Compagny to control little robots to gather some Scraps.
+Your conscience start when the robot startup, after being landed on a planet. Your goal : Gather all the scraps without letting your batteries drains to 0.
+The Compagny, give you 3 robot per planet. But beaware that draining a robot, leave it's body in place. So don't get stuck.
 
-To get out, you have your headlight, checkpoints, and a brain.
+## Current Beta :
+
+**Mission 1 :** Radium gathering on AT-6H3.
+**Gameplay mode :** Easy (When the player die, the body does not stay in place).
 
 Good luck :)
