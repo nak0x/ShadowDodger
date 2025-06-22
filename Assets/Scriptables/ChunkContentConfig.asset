@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7992125db9a4720b6e5d7cfa3085ed, type: 3}
   m_Name: ChunkContentConfig
   m_EditorClassIdentifier: 
-  Entries: []
-  PredefinedValues: 
-  ContentTypeMinRandomRates: []
+  Entries:
+  - Value: 2
+    Weight: 33
+  - Value: 3
+    Weight: 77
+  PredefinedValues: 01000000030000000300000003000000
+  ContentTypeMinRandomRates:
+  - Value: 0
+    MinRandomRate: 8
+  - Value: 1
+    MinRandomRate: 4
