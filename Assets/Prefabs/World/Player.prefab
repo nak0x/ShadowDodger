@@ -5144,13 +5144,14 @@ GameObject:
   - component: {fileID: 6628917535931516602}
   - component: {fileID: 2780223469357586267}
   - component: {fileID: 7963619643930924323}
+  - component: {fileID: 2588030069644978426}
   - component: {fileID: 3157242151638824096}
   - component: {fileID: 1069910471331741518}
   - component: {fileID: 888168770729136883}
   - component: {fileID: 5252083129218369195}
   - component: {fileID: 1377987885274329586}
   - component: {fileID: 8602745353580211661}
-  - component: {fileID: 2588030069644978426}
+  - component: {fileID: 4117775651515179341}
   m_Layer: 8
   m_Name: Body
   m_TagString: Player
@@ -5278,6 +5279,14 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!81 &2588030069644978426
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5600883051083440529}
+  m_Enabled: 1
 --- !u!114 &3157242151638824096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5379,14 +5388,18 @@ MonoBehaviour:
   PlayerRB: {fileID: 7963619643930924323}
   progressionDuration: 2
   rateFactor: 20
---- !u!81 &2588030069644978426
-AudioListener:
+--- !u!114 &4117775651515179341
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5600883051083440529}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ee2c8e078a44037b09f684b51ff2ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6447716546091376322
 GameObject:
   m_ObjectHideFlags: 0
