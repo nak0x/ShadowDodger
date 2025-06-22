@@ -8,6 +8,9 @@ namespace Chunks
     /// </summary>
     public class ChunkCell : MonoBehaviour
     {
+        [Header("Chunk Cell Content")]
+        [SerializeField] private ChunkContentManager content; // Prefab for the content of the
+
         [Header("Wall Objects")]
         [SerializeField] private GameObject topWalls; // Array of chunk prefabs
         [SerializeField] private GameObject rightWalls; // Array of chunk prefabs
@@ -44,6 +47,11 @@ namespace Chunks
                 Mathf.Min(activeWalls.w, wallStates.w)
             );
             UpdateWalls();
+        }
+
+        public void RenewContent()
+        {
+            content.RenewContent();
         }
     }
 }

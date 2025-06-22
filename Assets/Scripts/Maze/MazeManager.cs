@@ -1,5 +1,6 @@
 using UnityEngine;
 using Utils;
+using EditorAttributes;
 
 namespace Maze
 {
@@ -17,5 +18,12 @@ namespace Maze
             _seed.InitIfUnset();
             mazeGenerator.GenerateMaze(_seed);
         } 
+
+        [ContextMenu("Regenerate Maze")]
+        [Button("Regenerate Maze", 30f)]
+        public void RegenerateMaze()
+        {
+            mazeGenerator.RegenerateMaze();
+        }
     }
 }

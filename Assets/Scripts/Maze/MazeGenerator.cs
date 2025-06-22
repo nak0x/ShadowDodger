@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Utils;
+using Chunks;
 
 namespace Maze
 {
@@ -21,7 +22,7 @@ namespace Maze
         [SerializeField] public int MazeMaxCorridorLength = 5;
         [Tooltip("Maximum size of the maze. If the maze exceeds this size, it may cause performance issues. This will not prevent the maze from being generated.")]
         [SerializeField] private int MazeDangerousSizeLimit = 10000;
-        
+
         [Header("Maze Node Settings")]
         [Tooltip("Prefab for the MazeNode. This should contain a MazeNode component that handles the node's behavior and rendering.")]
         [SerializeField] private GameObject nodePrefab;
@@ -109,6 +110,25 @@ namespace Maze
             InitialShuffle();
 
             // Instantiate MazeNode meshes
+            RenderMaze();
+        }
+
+        /// <summary>
+        /// Regenerates the maze by resetting the maze nodes and their content.
+        /// Then it calls RuntimeShuffle to re-generate the maze structure.
+        /// </summary>
+        public void RegenerateMaze()
+        {
+            // Reset the global random call count for consistent shuffling
+            ChunkContentTypeConfig.ResetGlobalRandomCallCount();
+
+            // Reset the maze nodes and their content
+            RenewMazeNodeContent();
+
+            // Re-generate the maze with the current seed
+            RuntimeShuffle();
+
+            // Render the maze after shuffling
             RenderMaze();
         }
 
@@ -211,7 +231,7 @@ namespace Maze
             }
 
             // Set the direction of the current node to the jump direction
-                mazeNodes[origin.x, origin.y].SetNodeDirection(angle);
+            mazeNodes[origin.x, origin.y].SetNodeDirection(angle);
 
             // Move the origin in the specified direction
             if (angle == 0 || angle == 180)
@@ -371,6 +391,25 @@ namespace Maze
                 return mazeNodes[x, z + nodeAngleMatriceModificator[angle]] ?? throw new System.Exception($"MazeNode at ({x}, {z + nodeAngleMatriceModificator[angle]}) is null. Ensure nodes are spawned correctly.");
             }
             return mazeNodes[x, z] ?? throw new System.Exception($"MazeNode at ({x}, {z}) is null. Ensure nodes are spawned correctly.");
+        }
+
+        /// <summary>
+        /// Resets the content of all MazeNode objects in the maze.
+        /// This method iterates through each node in the mazeNodes array and calls the ResetContent method on each MazeNode.
+        /// It is used to clear the maze content before re-generating.
+        /// </summary>
+        void RenewMazeNodeContent()
+        {
+            for (int x = 0; x < MazeWidth; x++)
+            {
+                for (int z = 0; z < MazeHeight; z++)
+                {
+                    if (mazeNodes[x, z] != null)
+                    {
+                        mazeNodes[x, z].RenewContent();
+                    }
+                }
+            }
         }
     }
 }

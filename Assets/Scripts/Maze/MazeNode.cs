@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using System.Numerics;
 using Chunks;
 using UnityEditor;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
-using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using Vector4 = UnityEngine.Vector4;
 
@@ -144,7 +142,6 @@ namespace Maze
                 _nodeChunkInstance = Instantiate(nodeChunkPrefab, transform.position, Quaternion.identity, transform);
             }
         }
-
         /// <summary>
         /// Renders the maze node by ensuring the node chunk instance is created and carving the wall
         /// based on the node's direction.
@@ -233,6 +230,18 @@ namespace Maze
             ChunkCell cell = _nodeChunkInstance.GetComponent<ChunkCell>() ?? throw new System.NullReferenceException("Node chunk instance does not have a ChunkCell component.");
             cell.activeWalls = new Vector4(1, 1, 1, 1); // Reset all walls to active
             cell.UpdateWalls();
+        }
+
+        /// <summary>
+        /// Resets the content of the current node chunk instance.
+        /// This method calls the `ResetContent` method of the `ChunkCell` component,
+        /// which is responsible for clearing any content that has been spawned in the chunk.
+        /// </summary>
+        /// <exception cref="System.NullReferenceException">Raise an exception if the chunkInstance dont contain a ChunkCell component</exception>
+        public void RenewContent()
+        {
+            ChunkCell cell = _nodeChunkInstance.GetComponent<ChunkCell>() ?? throw new System.NullReferenceException("Node chunk instance does not have a ChunkCell component.");
+            cell.RenewContent();
         }
 
         /// <summary>
