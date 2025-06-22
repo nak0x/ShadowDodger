@@ -96,9 +96,7 @@ namespace Chunks
         /// </summary>
         public static void ResetGlobalRandomCallCount()
         {
-            Debug.Log($"Resetting global random call count from {GlobalRandomCallCount} to 0.");
             GlobalRandomCallCount = 0;
-            Debug.Log($"now at {GlobalRandomCallCount}.");
         }
 
         /// <summary>
@@ -109,7 +107,6 @@ namespace Chunks
         /// <returns>A randomly selected ChunkContentType based on the defined weights.</returns>
         public ChunkContentType GetRandomValue()
         {
-            Debug.Log($"Global random call count before increment: {GlobalRandomCallCount}");
             GlobalRandomCallCount++;
 
             var queue = GetSharedQueue();

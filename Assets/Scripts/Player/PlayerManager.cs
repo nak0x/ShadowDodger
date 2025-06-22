@@ -2,18 +2,23 @@ using System.Collections.Generic;
 using Collectibles;
 using UnityEngine;
 using Utils;
+using Level;
 
 namespace Player
 {
     public class PlayerManager : MonoBehaviour, IDevSerializable
     {
+        [Header("Game Manager")]
+        [SerializeField] private LevelManager _levelManager;
+
         [Header("Player objects")]
         [SerializeField] private GameObject _playerBody;
         [SerializeField] private Camera _playerCamera;
 
         [Header("Player properties")]
+        [SerializeField] private new string name = "Player";
+        [SerializeField] private CheckPointManager _checkPointManager;
         [SerializeField] List<ResetableMonoBehaviour> _playerProperties = new List<ResetableMonoBehaviour>();
-        [SerializeField] private string _playerName = "Player";
 
         private List<CollectibleData> _scrapsCollected;
 
@@ -21,7 +26,7 @@ namespace Player
         {
             if (_playerBody == null)
             {
-                Debug.LogError("Player body is not assigned!");
+                Debug.LogError("Player body is not set for PlayerManager!");
                 return;
             }
             _playerBody.transform.position = position;
@@ -34,6 +39,37 @@ namespace Player
                 _scrapsCollected = new List<CollectibleData>();
             }
             _scrapsCollected.Add(scrap);
+        }
+
+        public void RegisterDeath(Death cause)
+        {
+            ResetPlayer(PlayerResetType.Medium);
+            // Handle player death logic here, e.g., notify UI, play sound, etc.
+            switch (cause)
+            {
+                case Death.Energy:
+                    if (_checkPointManager == null)
+                    {
+                        Debug.LogError("CheckPointManager is not set for PlayerManager!");
+                        return;
+                    }
+                    _checkPointManager.GoToCheckPoint();
+                    break;
+                case Death.GameOver:
+                    if (_levelManager == null)
+                    {
+                        Debug.LogError("LevelManager is not set for PlayerManager!");
+                        return;
+                    }
+                    _levelManager.EndLevel();
+                    break;
+                case Death.Damage:
+                    Debug.Log("Player died due to enemy attack.");
+                    break;
+                default:
+                    Debug.Log("Player died due to unknown reason.");
+                    break;
+            }
         }
 
         public void ResetPlayer(PlayerResetType resetType = PlayerResetType.Medium)
@@ -52,7 +88,7 @@ namespace Player
         public string DevSerialize()
         {
             string properties = string.Join(", ", _playerProperties.ConvertAll(p => p.GetType().Name));
-            return $"Player Name: {_playerName}, Body: {_playerBody.name}, Camera: {_playerCamera.name}, Properties: [{properties}], Collected Scraps: {_scrapsCollected?.Count ?? 0}";
+            return $"Player Name: {name}, Body: {_playerBody.name}, Camera: {_playerCamera.name}, Properties: [{properties}], Collected Scraps: {_scrapsCollected?.Count ?? 0}";
         }
     }
 

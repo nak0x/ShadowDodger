@@ -18,12 +18,12 @@ MonoBehaviour:
   - Value: 1
     Weight: 0
   - Value: 2
-    Weight: 25
+    Weight: 50
   - Value: 3
     Weight: 50
   PredefinedValues: 03000000030000000300000003000000
   ContentTypeMinRandomRates:
   - Value: 0
-    MinRandomRate: 6
+    MinRandomRate: 8
   - Value: 1
-    MinRandomRate: 3
+    MinRandomRate: 4

@@ -5145,9 +5145,10 @@ GameObject:
   - component: {fileID: 2780223469357586267}
   - component: {fileID: 7963619643930924323}
   - component: {fileID: 2588030069644978426}
-  - component: {fileID: 3157242151638824096}
   - component: {fileID: 1069910471331741518}
+  - component: {fileID: 3157242151638824096}
   - component: {fileID: 888168770729136883}
+  - component: {fileID: 1416197269516341790}
   - component: {fileID: 5252083129218369195}
   - component: {fileID: 1377987885274329586}
   - component: {fileID: 8602745353580211661}
@@ -5287,25 +5288,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5600883051083440529}
   m_Enabled: 1
---- !u!114 &3157242151638824096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5600883051083440529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7869d63758a41354ca3917cb2421f11b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerBody: {fileID: 5600883051083440529}
-  _playerCamera: {fileID: 3094602544716430924}
-  _playerProperties:
-  - {fileID: 5252083129218369195}
-  - {fileID: 888168770729136883}
-  - {fileID: 1069910471331741518}
-  _playerName: Player
 --- !u!114 &1069910471331741518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5319,6 +5301,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 3157242151638824096}
+--- !u!114 &3157242151638824096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5600883051083440529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7869d63758a41354ca3917cb2421f11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelManager: {fileID: 0}
+  _playerBody: {fileID: 5600883051083440529}
+  _playerCamera: {fileID: 3094602544716430924}
+  name: Player
+  _checkPointManager: {fileID: 1416197269516341790}
+  _playerProperties:
+  - {fileID: 5252083129218369195}
+  - {fileID: 888168770729136883}
+  - {fileID: 1069910471331741518}
 --- !u!114 &888168770729136883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5333,8 +5336,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLifes: 3
   remainingLife: 3
-  levelManager: {fileID: 0}
   playerState: {fileID: 1069910471331741518}
+  playerManager: {fileID: 3157242151638824096}
+--- !u!114 &1416197269516341790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5600883051083440529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172dc388b4c75483a8cf408424181111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerManager: {fileID: 3157242151638824096}
 --- !u!114 &5252083129218369195
 MonoBehaviour:
@@ -5350,8 +5365,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeManager: {fileID: 888168770729136883}
   batteryPercentage: 100
-  chargeRate: 1
-  drainRate: 20
+  chargeRate: 2
+  drainRate: 5
   debug: 0
 --- !u!114 &1377987885274329586
 MonoBehaviour:
