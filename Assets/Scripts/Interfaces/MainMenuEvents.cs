@@ -46,13 +46,15 @@ public class MainMenuEvents : MonoBehaviour
 
     private void OnPlayGameCkicked(ClickEvent evt)
     {
-        Debug.Log("Play button clicked. Starting the game...");
         // Add logic to start the game here
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.LoadGame();
+        }
     }
 
     private void OnQuitGameClicked(ClickEvent evt)
     {
-        Debug.Log("Quit button clicked. Exiting the game...");
         Application.Quit();
     }
 
