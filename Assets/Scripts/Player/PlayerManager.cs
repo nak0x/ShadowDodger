@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Collectibles;
 using UnityEngine;
 using Utils;
 
@@ -14,6 +15,8 @@ namespace Player
         [SerializeField] List<ResetableMonoBehaviour> _playerProperties = new List<ResetableMonoBehaviour>();
         [SerializeField] private string _playerName = "Player";
 
+        private List<CollectibleData> _scrapsCollected;
+
         public void TP(Vector3 position)
         {
             if (_playerBody == null)
@@ -22,6 +25,15 @@ namespace Player
                 return;
             }
             _playerBody.transform.position = position;
+        }
+
+        public void AddScrap(CollectibleData scrap)
+        {
+            if (_scrapsCollected == null)
+            {
+                _scrapsCollected = new List<CollectibleData>();
+            }
+            _scrapsCollected.Add(scrap);
         }
 
         public void ResetPlayer(PlayerResetType resetType = PlayerResetType.Medium)
@@ -40,7 +52,7 @@ namespace Player
         public string DevSerialize()
         {
             string properties = string.Join(", ", _playerProperties.ConvertAll(p => p.GetType().Name));
-            return $"Player Name: {_playerName}, Body: {_playerBody.name}, Camera: {_playerCamera.name}, Properties: [{properties}]";
+            return $"Player Name: {_playerName}, Body: {_playerBody.name}, Camera: {_playerCamera.name}, Properties: [{properties}], Collected Scraps: {_scrapsCollected?.Count ?? 0}";
         }
     }
 
