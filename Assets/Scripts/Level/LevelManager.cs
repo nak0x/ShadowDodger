@@ -1,6 +1,4 @@
-using System.Collections;
 using Player;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -10,6 +8,9 @@ namespace Level
     public class LevelManager : MonoBehaviour
     {
         private bool _isGameEnded = false;
+
+        [Header("Level Settings")]
+        [SerializeField] private int levelIndex = 0;
 
         [FormerlySerializedAs("checkPoints")] [Header("Level checkpoints")] [SerializeField]
         private LevelCheckPointsManager levelCheckPointsManager;
