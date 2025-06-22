@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4018711622945899500}
   - component: {fileID: 5296431547965409682}
-  - component: {fileID: 8960434239063086323}
   - component: {fileID: 69166747471202655}
   - component: {fileID: 7492480025813933858}
   m_Layer: 8
@@ -86,14 +85,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8960434239063086323
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239751069773171446}
-  m_Enabled: 1
 --- !u!114 &69166747471202655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5159,6 +5150,7 @@ GameObject:
   - component: {fileID: 5252083129218369195}
   - component: {fileID: 1377987885274329586}
   - component: {fileID: 8602745353580211661}
+  - component: {fileID: 2588030069644978426}
   m_Layer: 8
   m_Name: Body
   m_TagString: Player
@@ -5387,6 +5379,14 @@ MonoBehaviour:
   PlayerRB: {fileID: 7963619643930924323}
   progressionDuration: 2
   rateFactor: 20
+--- !u!81 &2588030069644978426
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5600883051083440529}
+  m_Enabled: 1
 --- !u!1 &6447716546091376322
 GameObject:
   m_ObjectHideFlags: 0
