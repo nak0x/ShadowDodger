@@ -1,0 +1,49 @@
+.header {
+    font-size: 75px;
+    -unity-font-definition: url("project://database/Assets/Ressources/Fonts/FantasqueSansMNerdFontMono-Regular.ttf?fileID=12800000&guid=c7a865f992e72ef4dafcf7000ea0152a&type=3#FantasqueSansMNerdFontMono-Regular");
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    padding-top: 0;
+}
+
+.btn {
+    padding-top: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    font-size: 25px;
+    -unity-font-definition: url("project://database/Assets/Ressources/Fonts/FantasqueSansMNerdFontMono-Regular.ttf?fileID=12800000&guid=c7a865f992e72ef4dafcf7000ea0152a&type=3#FantasqueSansMNerdFontMono-Regular");
+    -unity-text-align: upper-center;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    margin-left: 0;
+    background-color: rgb(255, 255, 255);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(212, 212, 212);
+    border-right-color: rgb(212, 212, 212);
+    border-top-color: rgb(212, 212, 212);
+    border-bottom-color: rgb(212, 212, 212);
+    color: rgb(63, 63, 63);
+    transition-property: all;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+
+.credits {
+    -unity-font-definition: url("project://database/Assets/Ressources/Fonts/FantasqueSansMNerdFontMono-Regular.ttf?fileID=12800000&guid=c7a865f992e72ef4dafcf7000ea0152a&type=3#FantasqueSansMNerdFontMono-Regular");
+    font-size: 25px;
+}
+
+.btn:hover {
+    -unity-background-image-tint-color: rgb(214, 214, 214);
+    scale: 1.05 1.05;
+}

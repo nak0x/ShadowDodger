@@ -1,0 +1,13 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=424cb6a66a046498cb7fba7ab0a40cab&amp;type=3#MainMenuStyle" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; padding-top: 50px; padding-left: 50px; padding-right: 50px; padding-bottom: 50px; background-image: url(&quot;project://database/Assets/Ressources/Images/MainMenuBg.jpg?fileID=2800000&amp;guid=2211054a726944eebb9fd5010ba36e3c&amp;type=3#MainMenuBg&quot;); -unity-background-scale-mode: scale-to-fit; background-position-x: left 50%; background-position-y: top 60%; background-size: 550px 550px; background-color: rgb(252, 255, 247); justify-content: space-between;">
+        <ui:GroupBox name="Content">
+            <ui:Label text="Shadow Dodger" name="GameTitle" class="header" style="text-shadow: 0 5px 15px rgba(0, 0, 0, 0.09); letter-spacing: -5px; word-spacing: -20px;" />
+            <ui:GroupBox name="Buttons" style="width: 250px; align-items: stretch; justify-content: center; align-content: center; align-self: center; margin-top: 70px; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                <ui:Button text="Enter" name="PlayButton" class="btn" />
+                <ui:Button text="Leave" name="QuitButton" class="btn" />
+            </ui:GroupBox>
+        </ui:GroupBox>
+        <ui:Label text="Beta - Dev preview by Nak0x" name="Credits" class="credits" style="justify-content: flex-start; align-content: flex-start;" />
+    </ui:VisualElement>
+</ui:UXML>
