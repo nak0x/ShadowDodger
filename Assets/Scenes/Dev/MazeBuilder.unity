@@ -248,30 +248,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2496353604027896849, guid: 0d230f49a567e44bc9588506c84cfa8c, type: 3}
-      propertyPath: MazeWidth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2496353604027896849, guid: 0d230f49a567e44bc9588506c84cfa8c, type: 3}
-      propertyPath: MazeHeight
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2496353604027896849, guid: 0d230f49a567e44bc9588506c84cfa8c, type: 3}
-      propertyPath: intervalSeconds
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2496353604027896849, guid: 0d230f49a567e44bc9588506c84cfa8c, type: 3}
-      propertyPath: enableRuntimeShuffle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2496353604027896849, guid: 0d230f49a567e44bc9588506c84cfa8c, type: 3}
-      propertyPath: initialShuffleFactor
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2496353604027896849, guid: 0d230f49a567e44bc9588506c84cfa8c, type: 3}
-      propertyPath: MazeMaxCorridorLength
-      value: 10000
-      objectReference: {fileID: 0}
     - target: {fileID: 3420325665068028444, guid: 0d230f49a567e44bc9588506c84cfa8c, type: 3}
       propertyPath: m_Name
       value: Map
