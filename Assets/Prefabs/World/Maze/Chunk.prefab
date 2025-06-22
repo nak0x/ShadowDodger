@@ -745,7 +745,7 @@ Transform:
   m_GameObject: {fileID: 4410401190767217423}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -765,9 +765,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentPrefabs:
   - ContentType: 0
-    Prefab: {fileID: 2843233435866709085, guid: 1d1fe8240f9606044b956bc119592863, type: 3}
+    Prefab: {fileID: 7072716504856370589, guid: 8879ba2dcb18f49ada7f33350525882f, type: 3}
   - ContentType: 1
-    Prefab: {fileID: 2843233435866709085, guid: 8cbbf7230fe1349bf883a36d0634a97b, type: 3}
+    Prefab: {fileID: 8753890687471518378, guid: 8d8cad6051fc94cb18988b4d3463c16b, type: 3}
   - ContentType: 2
     Prefab: {fileID: 7067494288093556909, guid: 7fa579838c4a9418b857c014b91992c1, type: 3}
   - ContentType: 3
@@ -1246,7 +1246,6 @@ GameObject:
   - component: {fileID: 5726789165465219911}
   - component: {fileID: 2763949606982335370}
   - component: {fileID: 512282093519859830}
-  - component: {fileID: 7712027767428434405}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -1264,7 +1263,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 0.1, z: 5}
+  m_LocalScale: {x: 5.1, y: 0.1, z: 5.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1693379879995040958}
@@ -1329,7 +1328,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8270431282106839964}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 33238a0491533422992ad2bc64cd0b11, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1343,30 +1342,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7712027767428434405
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8270431282106839964}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 2

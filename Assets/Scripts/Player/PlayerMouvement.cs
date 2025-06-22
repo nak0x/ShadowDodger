@@ -8,7 +8,7 @@ internal class PlayerMouvement : MonoBehaviour
     // Ground Movement
     [Header("Movement")]
     [SerializeField] private Rigidbody PlayerRB;
-    [SerializeField] private BoxCollider PlayerCol;
+    [SerializeField] private Collider PlayerCol;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Transform bodyContainer;
 
