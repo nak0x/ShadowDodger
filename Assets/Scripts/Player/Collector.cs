@@ -8,9 +8,24 @@ namespace Player
     /// </summary>
     public class Collector : MonoBehaviour
     {
+
+        [Header("Collector Properties")]
+        [SerializeField] private PlayerManager playerManager;
+
+        void Awake()
+        {
+            if (playerManager == null)
+            {
+                Debug.LogError("PlayerManager is not assigned in Collector!");
+            }
+        }
+
         public void Collect(CollectibleData collectible)
         {
-            Debug.Log($"Collected: {collectible.collectibleName}");
+            if (collectible.type == CollectibleType.Scraps)
+            {
+                playerManager.AddScrap(collectible);
+            }
         }
     }
 }

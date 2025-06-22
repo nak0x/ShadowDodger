@@ -9,9 +9,9 @@ namespace Collectibles
     public class CollectibleData : ScriptableObject
     {
         [Header("Collectible Properties")]
-        public string collectibleName;
-        public Sprite collectibleIcon;
-        public int collectibleValue;
-        public CollectibleType collectibleType;
+        public new string name;
+        public Sprite icon;
+        public int value;
+        public CollectibleType type;
     }
 }
