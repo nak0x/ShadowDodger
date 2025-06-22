@@ -9,12 +9,6 @@ namespace Level
     {
         private bool _isGameEnded = false;
 
-        [Header("Level Settings")]
-        [SerializeField] private int levelIndex = 0;
-
-        [FormerlySerializedAs("checkPoints")] [Header("Level checkpoints")] [SerializeField]
-        private LevelCheckPointsManager levelCheckPointsManager;
-
         [Header("Player")]
         [SerializeField] private PlayerManager player;
 
@@ -25,12 +19,6 @@ namespace Level
                 _isGameEnded = true;
                 RestartLevel();
             }
-        }
-
-        public void GoToLastCheckpoint()
-        {
-            levelCheckPointsManager.SetCurrentToLastCheckPoint();
-            player.TP(levelCheckPointsManager.currentCheckPointPosition);
         }
 
         private void RestartLevel()

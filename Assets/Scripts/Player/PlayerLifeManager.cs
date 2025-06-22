@@ -7,7 +7,7 @@ namespace Player
 {
     public enum Death
     {
-        Game = -1,
+        GameOver = -1,
         Energy = 0,
         Damage = 1, 
     }
@@ -20,7 +20,6 @@ namespace Player
         public int remainingLife;
 
         [Header("Game Integration")]
-        [SerializeField] private LevelManager levelManager;
         [SerializeField] private PlayerStateMachine playerState;
         [SerializeField] private PlayerManager playerManager;
 
@@ -35,21 +34,18 @@ namespace Player
         void Start()
         {
             remainingLife = maxLifes;
-            if (levelManager == null)
-                Debug.LogError("No levelManager assigned to player life Manager");
         }
 
         public void Die(Death cause)
         {
+            playerState.ChangeState(new DeadState(playerManager));
             remainingLife--;
             if (remainingLife <= 0)
             {
-                levelManager.EndLevel();
+                playerManager.RegisterDeath(Death.GameOver);
                 return;
             }
-            playerState.ChangeState(new DeadState(playerManager));
-            playerManager.ResetPlayer(PlayerResetType.Medium);
-            levelManager.GoToLastCheckpoint();
+            playerManager.RegisterDeath(cause);
         }
 
         public void Heal(int amount = 1)
