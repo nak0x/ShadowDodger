@@ -6,6 +6,8 @@ The Compagny, give you 3 robot per planet. But beaware that draining a robot, le
 
 ## Current Beta :
 
+📹 Alpha Gameplay : https://youtu.be/b5A90nFOx7A
+
 **Mission 1 :** Radium gathering on AT-6H3.
 **Gameplay mode :** Easy (When the player die, the body does not stay in place).
 
