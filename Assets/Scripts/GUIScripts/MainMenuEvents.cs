@@ -49,7 +49,7 @@ public class MainMenuEvents : MonoBehaviour
         // Add logic to start the game here
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.LoadGame();
+            GameManager.Instance.StartGame();
         }
     }
 
