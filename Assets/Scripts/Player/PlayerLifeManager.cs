@@ -1,6 +1,5 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using Level;
 using Utils;
 
 namespace Player

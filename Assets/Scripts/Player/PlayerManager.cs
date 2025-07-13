@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Collectibles;
 using UnityEngine;
 using Utils;
-using Level;
 
 namespace Player
 {
@@ -56,12 +55,12 @@ namespace Player
                     _checkPointManager.GoToCheckPoint();
                     break;
                 case Death.GameOver:
-                    if (_levelManager == null)
+                    if (LevelManager.Instance == null)
                     {
                         Debug.LogError("LevelManager is not set for PlayerManager!");
                         return;
                     }
-                    _levelManager.EndLevel();
+                    LevelManager.Instance.EndLevel();
                     break;
                 case Death.Damage:
                     Debug.Log("Player died due to enemy attack.");

@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Utils;
 
 public class GameManager : MonoBehaviour
@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject LoadingScreen;
 
-    private string saveFilePath;
+    private List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
+    private GameState _state;
 
     void Awake()
     {
@@ -28,19 +29,9 @@ public class GameManager : MonoBehaviour
 
     void InitializeGame()
     {
-        saveFilePath = Application.persistentDataPath + "/save.json";
-        SceneManager.LoadSceneAsync((int)SceneIndexes.TITLE_SCREEN, LoadSceneMode.Additive);
-    }
-
-    List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
-
-    public void LoadGame()
-    {
-        LoadingScreen.SetActive(true);
-        scenesLoading.Add(SceneManager.UnloadSceneAsync((int)SceneIndexes.TITLE_SCREEN));
-        scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.LEVEL, LoadSceneMode.Additive));
-
-        StartCoroutine(GetsSceneLoadProgress());
+        // Transition to a new GameState.
+        TransitionTo(new ConcreteGameStateInit());
+        DisplayMenu();
     }
 
     public IEnumerator GetsSceneLoadProgress()
@@ -54,5 +45,35 @@ public class GameManager : MonoBehaviour
         }
 
         LoadingScreen.SetActive(false);
+        DisplayMenu();
+    }
+
+    public void AddToSceneLoadProgress(AsyncOperation operation)
+    {
+        scenesLoading.Add(operation);
+    }
+
+    // ==== Game State Managment ====
+
+    public void TransitionTo(GameState state)
+    {
+        _state = state;
+    }
+
+    public void PauseGame()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void StartGame()
+    {
+        LoadingScreen.SetActive(true);
+        _state.HandlePlaying();
+        StartCoroutine(GetsSceneLoadProgress());
+    }
+
+    public void DisplayMenu()
+    {
+        _state.HandleMenu();
     }
 }
